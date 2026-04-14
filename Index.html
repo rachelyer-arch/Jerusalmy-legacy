@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In Memory of Jacques Eisenband | The Jerusalmy Family</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Lato:ital,wght@0,300;0,400;1,300&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg:      #f0ebe0;
+  --card:    #f7f3ec;
+  --ink:     #1c1510;
+  --brown:   #3d2c1e;
+  --muted:   #7a6a58;
+  --light:   #a89580;
+  --gold:    #b5923e;
+  --gold-lt: #d9be80;
+  --border:  #d5c8b0;
+  --line:    #e0d5c0;
+  --dark:    #0f0b07;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-weight: 300;
+  line-height: 1.95;
+}
+
+/* Language-based font & direction */
+html[dir="ltr"] body { font-family: 'Lato', sans-serif; }
+html[dir="rtl"] body { font-family: 'Heebo', sans-serif; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; right: 0; left: 0;
+  z-index: 100;
+  background: rgba(240,235,224,0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 52px;
+}
+
+.nav-brand {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--brown);
+}
+
+.lang-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 18px;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.lang-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 110px 48px 90px;
+}
+
+.hero-star {
+  font-size: 3.8rem;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 44px;
+  opacity: 0.72;
+}
+
+.hero-for {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.76rem;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: var(--light);
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.hero-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(3.2rem, 8vw, 6rem);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.0;
+  margin-bottom: 10px;
+}
+.hero-name em { font-style: italic; color: var(--brown); }
+
+.hero-dates {
+  font-family: 'Nunito', sans-serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--muted);
+  font-weight: 300;
+  margin-bottom: 44px;
+}
+
+.hero-rule {
+  width: 44px; height: 1px;
+  background: var(--gold);
+  margin: 0 auto 36px;
+  opacity: 0.5;
+}
+
+.hero-story {
+  font-size: 1rem;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.9;
+  max-width: 520px;
+}
+
+/* ── CONTENT ── */
+.content { max-width: 780px; margin: 0 auto; padding: 0 44px 100px; }
+
+.chapter { padding: 80px 0; border-bottom: 1px solid var(--line); }
+.chapter:last-of-type { border-bottom: none; }
+
+.ch-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.44em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  font-weight: 400;
+  display: block;
+}
+
+.prose { font-size: 1rem; color: var(--ink); line-height: 2.05; }
+.prose p { margin-bottom: 22px; }
+.prose p:last-child { margin-bottom: 0; }
+
+/* ── PHOTO ── */
+.photo-wrap {
+  background: var(--dark);
+  padding: 52px;
+  margin: 52px 0;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 52px;
+  align-items: start;
+}
+
+.photo-frame { border: 1px solid rgba(181,146,62,0.22); padding: 8px; }
+.photo-frame img { width: 100%; display: block; }
+
+.photo-label {
+  font-size: 0.67rem; letter-spacing: 0.42em; text-transform: uppercase;
+  color: rgba(217,190,128,0.6); margin-bottom: 14px; font-weight: 400;
+}
+
+.photo-heading {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.3rem; font-weight: 400;
+  color: var(--bg); line-height: 1.4; margin-bottom: 22px;
+}
+
+.photo-text { font-size: 0.95rem; color: rgba(240,235,224,0.62); line-height: 1.95; font-weight: 300; }
+.photo-text p { margin-bottom: 13px; }
+.photo-text p:last-child { margin-bottom: 0; }
+.photo-text strong { color: var(--bg); font-weight: 400; }
+
+.photo-src {
+  margin-top: 20px; padding-top: 16px;
+  border-top: 1px solid rgba(181,146,62,0.18);
+  font-size: 0.78rem; color: rgba(181,146,62,0.62); font-style: italic;
+}
+
+/* ── TIMELINE ── */
+.tl-wrap { position: relative; margin-top: 52px; }
+
+html[dir="ltr"] .tl-wrap { padding-left: 28px; }
+html[dir="rtl"] .tl-wrap { padding-right: 28px; }
+
+.tl-wrap::before {
+  content: '';
+  position: absolute;
+  top: 8px; bottom: 8px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--gold-lt), var(--line));
+}
+html[dir="ltr"] .tl-wrap::before { left: 7px; }
+html[dir="rtl"] .tl-wrap::before { right: 7px; }
+
+.tl { position: relative; margin-bottom: 34px; }
+html[dir="ltr"] .tl { padding-left: 28px; }
+html[dir="rtl"] .tl { padding-right: 28px; }
+
+.tl::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 1px var(--gold);
+}
+html[dir="ltr"] .tl::before { left: -19px; }
+html[dir="rtl"] .tl::before { right: -19px; }
+
+.tl.dark::before { background: var(--brown); box-shadow: 0 0 0 1px var(--brown); }
+
+.tl-d { font-size: 0.74rem; letter-spacing: 0.18em; color: var(--light); text-transform: uppercase; margin-bottom: 3px; }
+.tl-t { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.tl-b { font-size: 0.92rem; color: var(--muted); line-height: 1.8; }
+
+/* ── CONVOY ── */
+.convoy { background: var(--dark); padding: 44px 52px; margin: 52px 0; }
+.conv-n { font-family: 'Nunito', sans-serif; font-size: 4.5rem; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+.conv-l { font-size: 0.69rem; letter-spacing: 0.42em; text-transform: uppercase; color: rgba(217,190,128,0.58); margin-bottom: 16px; }
+.conv-t { font-size: 0.95rem; color: rgba(240,235,224,0.55); line-height: 1.9; margin-bottom: 26px; font-weight: 300; }
+.conv-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 22px; }
+.cs-n { font-family: 'Nunito', sans-serif; font-size: 2rem; font-weight: 300; color: var(--gold); display: block; line-height: 1; margin-bottom: 4px; }
+.cs-l { font-size: 0.69rem; color: rgba(240,235,224,0.36); letter-spacing: 0.08em; }
+
+/* ── PEOPLE ── */
+.people { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 40px; }
+.pc { background: var(--card); border: 1px solid var(--line); padding: 24px 26px; border-radius: 2px; }
+.pc-name { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+.pc-detail { font-size: 0.88rem; color: var(--muted); line-height: 1.85; }
+.pc-tag { display: inline-block; margin-top: 10px; padding: 2px 11px; font-size: 0.67rem; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 20px; }
+.tag-m { background: rgba(60,40,25,0.07); color: var(--brown); border: 1px solid rgba(60,40,25,0.16); }
+
+/* ── CALLOUT ── */
+.callout {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 28px 32px;
+  margin: 44px 0;
+  font-size: 0.97rem; color: var(--brown); line-height: 1.9;
+}
+html[dir="ltr"] .callout { border-left: 3px solid var(--gold); }
+html[dir="rtl"] .callout { border-right: 3px solid var(--gold); }
+.callout strong { color: var(--ink); font-weight: 400; }
+.callout em { font-style: italic; }
+
+/* ── PERSON BLOCK ── */
+.person-block {
+  background: var(--card); border: 1px solid var(--border);
+  border-top: 2px solid var(--gold);
+  padding: 40px 44px; margin-bottom: 44px;
+}
+.pb-name { font-family: 'Nunito', sans-serif; font-size: 1.6rem; font-weight: 400; color: var(--ink); margin-bottom: 5px; }
+.pb-sub { font-style: italic; font-size: 0.9rem; color: var(--light); margin-bottom: 20px; }
+.pb-body { font-size: 0.97rem; color: var(--ink); line-height: 2; }
+
+/* ── LEGACY ── */
+.legacy { background: var(--card); border: 1px solid var(--border); border-top: 2px solid var(--gold); padding: 40px 44px; margin-top: 52px; }
+.lg-b { font-size: 0.97rem; color: var(--muted); line-height: 2; }
+.lg-b p { margin-bottom: 14px; }
+.lg-b p:last-child { margin-bottom: 0; }
+
+/* ── SOURCES ── */
+.sources { padding-top: 40px; border-top: 1px solid var(--line); margin-top: 60px; }
+.src-t { font-size: 0.69rem; letter-spacing: 0.42em; text-transform: uppercase; color: var(--light); margin-bottom: 20px; display: block; }
+.src { display: flex; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+.src:last-child { border-bottom: none; }
+.src-n { color: var(--gold); font-family: 'Nunito'; font-weight: 500; font-size: 0.85rem; min-width: 16px; }
+
+/* ── FOOTER ── */
+footer { background: var(--dark); text-align: center; padding: 64px 40px; }
+.ft-v { font-family: 'Nunito', sans-serif; font-style: italic; font-size: 1.1rem; font-weight: 300; color: rgba(240,235,224,0.58); line-height: 1.8; margin-bottom: 18px; }
+.ft-n { font-family: 'Nunito', sans-serif; font-size: 0.87rem; color: rgba(217,190,128,0.62); letter-spacing: 0.07em; margin-bottom: 24px; font-weight: 300; }
+.ft-m { font-size: 0.67rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(240,235,224,0.17); }
+
+/* ── LANGUAGE TOGGLE ── */
+.en { display: block; }
+.he { display: none; }
+html[dir="rtl"] .en { display: none; }
+html[dir="rtl"] .he { display: block; }
+
+/* inline spans */
+span.en, span.he { display: inline; }
+html[dir="rtl"] span.en { display: none; }
+html[dir="rtl"] span.he { display: inline; }
+html[dir="ltr"] span.he { display: none; }
+html[dir="ltr"] span.en { display: inline; }
+
+@media (max-width: 640px) {
+  nav { padding: 0 20px; }
+  .content { padding: 0 22px 80px; }
+  .photo-wrap { grid-template-columns: 1fr; padding: 32px 24px; gap: 28px; }
+  .people { grid-template-columns: 1fr; }
+  .conv-stats { grid-template-columns: 1fr; }
+  .person-block, .legacy { padding: 30px 22px; }
+  .hero { padding: 90px 28px 70px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">
+    <span class="en">In Memory of Jacques Eisenband &nbsp;|&nbsp; The Jerusalmy Family</span>
+    <span class="he">לזכר ז'אק אייזנבנד | משפחת ירושלמי</span>
+  </span>
+  <button class="lang-btn" onclick="toggleLang()">
+    <span class="en">עברית</span>
+    <span class="he">English</span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-star">✡</span>
+  <p class="hero-for">
+    <span class="en">In memory of</span>
+    <span class="he">לזכרו של</span>
+  </p>
+  <h1 class="hero-name">
+    <span class="en">Jacques<br><em>Eisenband</em></span>
+    <span class="he">ז'אק<br><em>אייזנבנד</em></span>
+  </h1>
+  <p class="hero-dates">
+    <span class="en">Paris, 21 December 1936 &nbsp;·&nbsp; Auschwitz, 12 March 1944</span>
+    <span class="he">פריז, 21 בדצמבר 1936 &nbsp;·&nbsp; אושוויץ, 12 במרץ 1944</span>
+  </p>
+  <div class="hero-rule"></div>
+  <p class="hero-story">
+    <span class="en">
+      In 1944, while held alone in Lyon, Jacques kept a photograph of his mother and his aunt.
+      He carried it with him onto the train to Auschwitz.
+      The photograph survived, and is kept today in his family.
+    </span>
+    <span class="he">
+      בשנת 1944, כשהוחזק לבדו בליון, שמר ז'אק על תמונה של אמו ודודתו.
+      הוא נשא אותה עמו לרכבת לאושוויץ.
+      התמונה שרדה, ושמורה היום במשפחתו.
+    </span>
+  </p>
+</section>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- ROOTS -->
+  <div class="chapter">
+    <span class="ch-label"><span class="en">The Roots</span><span class="he">השורשים</span></span>
+    <div class="prose">
+      <p class="en">
+        The Jerusalmy family's roots reach deep into medieval Spain. After the expulsion of 1492,
+        the family found refuge under the Ottoman Empire. Istanbul became their home —
+        a city where Sephardic Jews preserved their Ladino language and their heritage for centuries.
+      </p>
+      <p class="he">
+        שורשי משפחת ירושלמי נטועים עמוק בספרד של ימי הביניים. לאחר גירוש 1492,
+        מצאה המשפחה מקלט בחסות האימפריה העות'מאנית. איסטנבול הפכה לביתה —
+        עיר שבה שמרו יהודים ספרדים על שפת הלאדינו ועל מורשתם במשך מאות שנים.
+      </p>
+      <p class="en">
+        In the early twentieth century, the family moved to France. Shalom Jerusalmy, born in Istanbul,
+        settled in Paris and married Hava (née Leibovici). They had one son — Raphaël.
+        His sister Marie Jerusalmy also came to Paris, where she married Hirsch Eisenband,
+        a Jewish man born in Warsaw. On 21 December 1936, their son Jacques was born
+        in the 12th arrondissement of Paris.
+      </p>
+      <p class="he">
+        בראשית המאה העשרים עברה המשפחה לצרפת. שלום ירושלמי, יליד איסטנבול,
+        התיישב בפריז ונישא לחווה (לבית ליבוביצ'י). נולד להם בן — רפאל.
+        אחותו מרי ירושלמי הגיעה אף היא לפריז, שם נישאה להירש אייזנבנד, יהודי יליד ורשה.
+        ב-21 בדצמבר 1936 נולד בנם ז'אק, ברובע ה-12 של פריז.
+      </p>
+    </div>
+  </div>
+
+  <!-- WAR -->
+  <div class="chapter">
+    <span class="ch-label"><span class="en">The War</span><span class="he">המלחמה</span></span>
+    <div class="prose">
+      <p class="en">
+        When the war broke out, Jacques was a small child. In 1943, as conditions worsened in Paris,
+        the family fled south to Nice — then a safe refuge under Italian occupation,
+        whose authorities refused to hand Jews over to the Germans. The city sheltered tens of thousands
+        of Jewish refugees. The family stayed at the Hôtel Regina. With them came Marie's sister
+        Riwka ("Beky"), their relative Yantov, and Suzanne Jerusalmy.
+      </p>
+      <p class="he">
+        כשפרצה המלחמה ז'אק היה ילד קטן. ב-1943, עם ההחמרה בפריז, ברחה המשפחה לניס —
+        שנחשבה מקלט בטוח תחת הכיבוש האיטלקי, שרשויותיו סירבו להסגיר יהודים לגרמנים.
+        העיר קלטה עשרות אלפי יהודים. המשפחה שכנה ב-Hôtel Regina.
+        יחד עמם הגיעו אחות מרי — ריווקה ("בֶּקִי"), קרובם יאנטוב וסוזן ירושלמי.
+      </p>
+      <p class="en">
+        In September 1943 the trap closed. The Nazis took control of Nice and dispatched
+        SS officer Alois Brunner to organize the deportations. Within months,
+        more than 3,000 Jews from the region were arrested, among them 264 children.
+      </p>
+      <p class="he">
+        בספטמבר 1943 נסגרה המלכודת. הנאצים השתלטו על ניס ושלחו את קצין ה-SS
+        אלואיס ברונר לנהל את הגירוש. תוך חודשים נעצרו מעל 3,000 יהודים מהאזור, ביניהם 264 ילדים.
+      </p>
+    </div>
+
+    <div class="tl-wrap">
+      <div class="tl">
+        <div class="tl-d"><span class="en">September 1943 — Nice</span><span class="he">ספטמבר 1943 — ניס</span></div>
+        <div class="tl-t"><span class="en">The family arrives at Hôtel Regina</span><span class="he">המשפחה מגיעה ל-Hôtel Regina</span></div>
+        <div class="tl-b"><span class="en">Nice under Italian occupation — a temporary refuge. In September the Nazis enter.</span><span class="he">ניס תחת כיבוש איטלקי — מקלט זמני. בספטמבר נכנסים הנאצים.</span></div>
+      </div>
+      <div class="tl dark">
+        <div class="tl-d">25 <span class="en">January</span><span class="he">ינואר</span> 1944</div>
+        <div class="tl-t"><span class="en">Arrested at the Swiss border</span><span class="he">נעצרים בגבול שוויץ</span></div>
+        <div class="tl-b"><span class="en">The family attempts to cross into Switzerland and is arrested. Marie is five months pregnant.</span><span class="he">המשפחה מנסה לחצות לשוויץ ונעצרת. מרי בהריון 5 חודשים.</span></div>
+      </div>
+      <div class="tl dark">
+        <div class="tl-d">8 <span class="en">Feb</span><span class="he">פברואר</span> – 2 <span class="en">Mar</span><span class="he">מרץ</span> 1944 — Lyon</div>
+        <div class="tl-t"><span class="en">Jacques held alone — Maison du Refuge</span><span class="he">ז'אק מוחזק לבדו — Maison du Refuge</span></div>
+        <div class="tl-b"><span class="en">77 rue de la Villette, Lyon. His parents were taken separately. Jacques, aged 7, alone.</span><span class="he">77 rue de la Villette, ליון. הוריו נלקחו בנפרד. ז'אק, בן 7, לבד.</span></div>
+      </div>
+      <div class="tl dark">
+        <div class="tl-d">7 <span class="en">March</span><span class="he">מרץ</span> 1944 — Drancy</div>
+        <div class="tl-t"><span class="en">Convoy 69 — Drancy to Auschwitz</span><span class="he">שיירה 69 — דראנסי לאושוויץ</span></div>
+        <div class="tl-b"><span class="en">Marie, Hirsch, Jacques, Riwka, Yantov and Suzanne board the train together.</span><span class="he">מרי, הירש, ז'אק, ריווקה, יאנטוב וסוזן עולים יחד לרכבת.</span></div>
+      </div>
+      <div class="tl dark">
+        <div class="tl-d">12 <span class="en">March</span><span class="he">במרץ</span> 1944 — Auschwitz</div>
+        <div class="tl-t"><span class="en">Jacques was murdered. He was 7 years old.</span><span class="he">ז'אק נרצח. בן 7.</span></div>
+        <div class="tl-b"><span class="en">Five days after the train arrived.</span><span class="he">חמישה ימים לאחר הגעת הרכבת.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTO -->
+  <div class="chapter">
+    <span class="ch-label"><span class="en">The Photograph</span><span class="he">התמונה</span></span>
+    <div class="prose">
+      <p class="en">
+        Among the few belongings found with Jacques during his time alone in Lyon,
+        the French staff preserved one photograph — a black-and-white image of three people
+        on the deck of a ship: his mother Marie, himself, and his aunt Riwka.
+        In the background, the ship's rigging. In the foreground, a life preserver.
+      </p>
+      <p class="he">
+        בין החפצים שנמצאו עם ז'אק כשהוחזק לבדו בליון, שמרו העובדים הצרפתיים
+        על תמונה אחת — צילום שחור-לבן של שלושה אנשים על סיפון אונייה:
+        אמו מרי, הוא עצמו, ודודתו ריווקה. ברקע חבלי הספינה. מול המצלמה תלויה טבעת הצלה.
+      </p>
+    </div>
+
+    <div class="photo-wrap">
+      <div>
+        <div class="photo-frame">
+          <img src="https://images.squarespace-cdn.com/content/v1/5cadef7b51f4d4fb6d1b63fc/1574331306921-XSCGCG6L9VL4YWX9R4IN/Eisenband+03-3335W12.jpg"
+               alt="Jacques with his mother Marie and his aunt Riwka">
+        </div>
+      </div>
+      <div>
+        <p class="photo-label">circa 1941–1943</p>
+        <h3 class="photo-heading">
+          <span class="en">Marie, Jacques and Riwka —<br>on the deck of a ship</span>
+          <span class="he">מרי, ז'אק וריווקה —<br>על סיפון אונייה</span>
+        </h3>
+        <div class="photo-text">
+          <p>
+            <strong><span class="en">Left</span><span class="he">משמאל</span></strong> —
+            <span class="en">Marie, Jacques's mother. Dark hair, dark coat, a calm expression.</span>
+            <span class="he">מרי, אמו של ז'אק. שיער כהה אסוף, מעיל כהה, מבט רגוע.</span>
+          </p>
+          <p>
+            <strong><span class="en">Center</span><span class="he">במרכז</span></strong> —
+            <span class="en">Jacques. A small boy in a light double-breasted coat, round face, looking directly into the camera.</span>
+            <span class="he">ז'אק. ילד קטן במעיל בהיר כפול-שורות, פנים עגולות, מבט ישיר למצלמה.</span>
+          </p>
+          <p>
+            <strong><span class="en">Right</span><span class="he">מימין</span></strong> —
+            <span class="en">Riwka, "Beky". Young, wavy hair, an open smile. Around 20–22 years old.</span>
+            <span class="he">ריווקה, "בֶּקִי". צעירה, שיער גלי, חיוך פתוח. בת כ-20–22.</span>
+          </p>
+          <p>
+            <span class="en">When the train left for Auschwitz, Jacques carried this photograph with him. It survived. It is kept today in the Jerusalmy family.</span>
+            <span class="he">כשעלתה הרכבת לאושוויץ, ז'אק נשא את התמונה עמו. היא שרדה ושמורה כיום במשפחת ירושלמי.</span>
+          </p>
+          <div class="photo-src">
+            "Jacques Eisenband avec sa mère Marie et sa tante Beky" — CDDEJ Archive, Lyon
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONVOY -->
+  <div class="convoy">
+    <div class="conv-n">69</div>
+    <div class="conv-l">
+      <span class="en">Deportation Convoy — Drancy to Auschwitz, 7 March 1944</span>
+      <span class="he">שיירת הגירוש — דראנסי לאושוויץ, 7 במרץ 1944</span>
+    </div>
+    <div class="conv-t">
+      <span class="en">The Jerusalmy–Eisenband family boarded the train together with 1,501 Jews.</span>
+      <span class="he">משפחת ירושלמי–אייזנבנד עלתה לרכבת יחד עם 1,501 יהודים.</span>
+    </div>
+    <div class="conv-stats">
+      <div><span class="cs-n">1,501</span><span class="cs-l"><span class="en">Jews in the convoy</span><span class="he">יהודים בשיירה</span></span></div>
+      <div><span class="cs-n">87.3%</span><span class="cs-l"><span class="en">Gassed upon arrival</span><span class="he">הוגזו עם ההגעה</span></span></div>
+      <div><span class="cs-n">34</span><span class="cs-l"><span class="en">Survivors by 1945</span><span class="he">ניצולים עד 1945</span></span></div>
+    </div>
+  </div>
+
+  <!-- FAMILY -->
+  <div class="chapter">
+    <span class="ch-label"><span class="en">The Family</span><span class="he">בני המשפחה</span></span>
+    <div class="people">
+      <div class="pc">
+        <div class="pc-name">Marie Jerusalmy–Eisenband</div>
+        <div class="pc-detail">
+          <span class="en">Born 5.6.1913 — Istanbul<br>Jacques's mother<br>Deported five months pregnant<br>Murdered — Auschwitz 1944</span>
+          <span class="he">נולדה 5.6.1913 — איסטנבול<br>אמו של ז'אק<br>גורשה בהריון 5 חודשים<br>נרצחה — אושוויץ 1944</span>
+        </div>
+        <span class="pc-tag tag-m"><span class="en">Murdered</span><span class="he">נרצחה</span></span>
+      </div>
+      <div class="pc">
+        <div class="pc-name">Hirsch (Henri) Eisenband</div>
+        <div class="pc-detail">
+          <span class="en">Born 26.11.1904 — Warsaw<br>Jacques's father<br>Murdered — Auschwitz 1944</span>
+          <span class="he">נולד 26.11.1904 — ורשה<br>אביו של ז'אק<br>נרצח — אושוויץ 1944</span>
+        </div>
+        <span class="pc-tag tag-m"><span class="en">Murdered</span><span class="he">נרצח</span></span>
+      </div>
+      <div class="pc">
+        <div class="pc-name">Riwka Jerusalmy — "Beky"</div>
+        <div class="pc-detail">
+          <span class="en">Born 1.2.1920 — Istanbul<br>Marie's sister, Jacques's aunt<br>Pictured in the photograph Jacques carried<br>Murdered — Auschwitz 1944, aged 24</span>
+          <span class="he">נולדה 1.2.1920 — איסטנבול<br>אחות מרי, דודתו של ז'אק<br>מצולמת בתמונה שז'אק נשא<br>נרצחה — אושוויץ 1944, בת 24</span>
+        </div>
+        <span class="pc-tag tag-m"><span class="en">Murdered</span><span class="he">נרצחה</span></span>
+      </div>
+      <div class="pc">
+        <div class="pc-name">Yantov Jerusalmy</div>
+        <div class="pc-detail">
+          <span class="en">Born 13.4.1909 — Edirne, Turkey<br>Family member<br>Murdered — Auschwitz 1944</span>
+          <span class="he">נולד 13.4.1909 — אדירנה, טורקיה<br>קרוב משפחה<br>נרצח — אושוויץ 1944</span>
+        </div>
+        <span class="pc-tag tag-m"><span class="en">Murdered</span><span class="he">נרצח</span></span>
+      </div>
+      <div class="pc" style="grid-column: span 2;">
+        <div class="pc-name">Suzanne Jerusalmy (née Bessoudo)</div>
+        <div class="pc-detail">
+          <span class="en">Born 1.1.1887 — Istanbul &nbsp;·&nbsp; Family member &nbsp;·&nbsp; Murdered — Auschwitz 1944</span>
+          <span class="he">נולדה 1.1.1887 — איסטנבול &nbsp;·&nbsp; קרובת משפחה &nbsp;·&nbsp; נרצחה — אושוויץ 1944</span>
+        </div>
+        <span class="pc-tag tag-m"><span class="en">Murdered</span><span class="he">נרצחה</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHALOM -->
+  <div class="chapter">
+    <span class="ch-label">Shalom Jerusalmy &nbsp;|&nbsp; שלום ירושלמי</span>
+
+    <div class="person-block">
+      <div class="pb-name">Shalom Jerusalmy</div>
+      <div class="pb-sub">
+        <span class="en">Istanbul, Turkey · Lived in France after the war</span>
+        <span class="he">איסטנבול, טורקיה · חי בצרפת לאחר המלחמה</span>
+      </div>
+      <div class="pb-body">
+        <span class="en">
+          Brother of Marie and Riwka. Born in Istanbul into the Sephardic Jewish community.
+          He emigrated to France and built his life there after the war.
+          He married Hava (née Leibovici) and they had one son — Raphaël Jerusalmy.
+          <br><br>
+          His sisters, brother-in-law, and nephew were murdered in Auschwitz.
+          Shalom carried their memory with him all his life.
+        </span>
+        <span class="he">
+          אחיהן של מרי וריווקה. נולד באיסטנבול לקהילה הספרדית–יהודית.
+          עלה לצרפת ובנה שם את חייו לאחר המלחמה.
+          נישא לחווה (לבית ליבוביצ'י) ונולד להם בן — רפאל ירושלמי.
+          <br><br>
+          אחיותיו, גיסו ואחיינו נרצחו באושוויץ. שלום נשא את זיכרונם כל ימי חייו.
+        </span>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong><span class="en">A literary connection —</span><span class="he">קשר לספרות —</span></strong>
+      <span class="en">
+        The French-Israeli writer Raphaël Jerusalmy, Shalom's son, said in an interview:
+        <em>"The Turkish Sephardic family was almost entirely wiped out in Auschwitz. My father was the only survivor."</em>
+        In his first novel, <em>Sauver Mozart</em> (Actes Sud, 2012), he dedicated the book to their memory.
+      </span>
+      <span class="he">
+        הסופר הצרפתי–ישראלי רפאל ירושלמי, בנו של שלום, אמר בראיון:
+        <em>"המשפחה הטורקית–ספרדית הושמדה כולה באושוויץ. אבי היה הניצול היחיד."</em>
+        בספרו <em>Sauver Mozart</em> (Actes Sud, 2012) הקדיש את הספר לזכרם.
+      </span>
+    </div>
+
+    <div class="legacy">
+      <div class="lg-b">
+        <p>
+          <span class="en">Of the family that arrived together in Nice in the summer of 1943, one survived — Shalom Jerusalmy. Five family members were murdered in Auschwitz. Marie carried a child who was never born.</span>
+          <span class="he">מהמשפחה שהגיעה יחד לניס בקיץ 1943, שרד אחד — שלום ירושלמי. חמישה בני משפחה נרצחו באושוויץ. מרי נשאה בבטנה ילד שלא נולד.</span>
+        </p>
+        <p>
+          <span class="en">One photograph survived — three people on the deck of a ship, smiling, unaware of what was to come. It is kept today in the Jerusalmy family.</span>
+          <span class="he">תמונה אחת שרדה — שלושה אנשים על סיפון אונייה, מחייכים, ללא מושג על מה שעתיד לבוא. היא שמורה כיום במשפחת ירושלמי.</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="sources">
+      <span class="src-t"><span class="en">Historical Sources</span><span class="he">מקורות תיעוד</span></span>
+      <div class="src"><span class="src-n">1</span><span>CDDEJ — Déportés de Lyon et sa région. <em>deportesdelyon.fr</em></span></div>
+      <div class="src"><span class="src-n">2</span><span>Sephardic Studies Foundation — "Turkish Born Sephardim Deported from France During WWII." <em>sephardicstudies.org</em></span></div>
+      <div class="src"><span class="src-n">3</span><span>Montluc Archive, Lyon — File no. 004072: Maison du Refuge, February–March 1944.</span></div>
+      <div class="src"><span class="src-n">4</span><span>Yad Vashem Sources (YVS): Marie Eisenband née JERUSALMY, 5.6.1913, Istanbul. <em>db.yadvashem.org</em></span></div>
+      <div class="src"><span class="src-n">5</span><span>Mémorial de la Shoah, Paris — "Nice, Hôtel Excelsior", Serge Klarsfeld (1993/1998).</span></div>
+      <div class="src"><span class="src-n">6</span><span>Raphaël Jerusalmy, <em>Sauver Mozart</em>, Actes Sud, 2012.</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- GALLERY -->
+<div style="background: var(--dark); padding: 72px 0;">
+  <div style="max-width: 780px; margin: 0 auto; padding: 0 44px;">
+
+    <div style="font-size: 0.68rem; letter-spacing: 0.44em; text-transform: uppercase; color: rgba(181,146,62,0.7); margin-bottom: 36px; font-weight: 400;">
+      <span class="en">Archive Documents &amp; Photographs · CDDEJ Lyon</span>
+      <span class="he">תמונות ומסמכים מהארכיב · CDDEJ ליון</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
+
+      <!-- 1: Jacques alone at Maison du Refuge -->
+      <div>
+        <div style="border: 1px solid rgba(181,146,62,0.2); padding: 8px; background: rgba(255,255,255,0.02);">
+          <img src="https://images.squarespace-cdn.com/content/v1/5cadef7b51f4d4fb6d1b63fc/1582656800121-GY8XRJH2TTEEOHN6W314/Eisenband.jpg"
+               alt="Jacques at Maison du Refuge"
+               style="width:100%; display:block;">
+        </div>
+        <p style="font-size:0.75rem; color: rgba(217,190,128,0.6); margin-top: 8px; line-height: 1.5; font-style: italic;">
+          <span class="en">Jacques — Maison du Refuge, Lyon, 1944</span>
+          <span class="he">ז'אק — Maison du Refuge, ליון, 1944</span>
+        </p>
+      </div>
+
+      <!-- 2: Jacques alone second photo -->
+      <div>
+        <div style="border: 1px solid rgba(181,146,62,0.2); padding: 8px; background: rgba(255,255,255,0.02);">
+          <img src="https://images.squarespace-cdn.com/content/v1/5cadef7b51f4d4fb6d1b63fc/1582656799273-UMIN8OCF79XMZGJRJ3PD/Eisenband+02.jpg"
+               alt="Jacques at Maison du Refuge"
+               style="width:100%; display:block;">
+        </div>
+        <p style="font-size:0.75rem; color: rgba(217,190,128,0.6); margin-top: 8px; line-height: 1.5; font-style: italic;">
+          <span class="en">Jacques — Maison du Refuge, Lyon, 1944</span>
+          <span class="he">ז'אק — Maison du Refuge, ליון, 1944</span>
+        </p>
+      </div>
+
+      <!-- 3: Henri and Marie (parents) -->
+      <div>
+        <div style="border: 1px solid rgba(181,146,62,0.2); padding: 8px; background: rgba(255,255,255,0.02);">
+          <img src="https://images.squarespace-cdn.com/content/v1/5cadef7b51f4d4fb6d1b63fc/1574331306940-92U8JXYMX521ETP31I50/Eisenband+05-3335W12.jpg"
+               alt="Henri and Marie Eisenband"
+               style="width:100%; display:block;">
+        </div>
+        <p style="font-size:0.75rem; color: rgba(217,190,128,0.6); margin-top: 8px; line-height: 1.5; font-style: italic;">
+          <span class="en">Henri &amp; Marie Eisenband — Jacques's parents</span>
+          <span class="he">הירש ומרי אייזנבנד — הוריו של ז'אק</span>
+        </p>
+      </div>
+
+      <!-- 4: Montluc file - Henri -->
+      <div>
+        <div style="border: 1px solid rgba(181,146,62,0.2); padding: 8px; background: rgba(255,255,255,0.02);">
+          <img src="https://images.squarespace-cdn.com/content/v1/5cadef7b51f4d4fb6d1b63fc/1574331307798-3I2ALZHGB02E3CBB2719/Eisenband+04072-20030805142122.jpg"
+               alt="Henri Eisenband Montluc file"
+               style="width:100%; display:block;">
+        </div>
+        <p style="font-size:0.75rem; color: rgba(217,190,128,0.6); margin-top: 8px; line-height: 1.5; font-style: italic;">
+          <span class="en">Hirsch Eisenband — Montluc arrest file, Lyon</span>
+          <span class="he">הירש אייזנבנד — תיק המעצר, מונטלוק, ליון</span>
+        </p>
+      </div>
+
+      <!-- 5: Family search card -->
+      <div>
+        <div style="border: 1px solid rgba(181,146,62,0.2); padding: 8px; background: rgba(255,255,255,0.02);">
+          <img src="https://images.squarespace-cdn.com/content/v1/5cadef7b51f4d4fb6d1b63fc/1574331307589-K3TI7240KYP9WFYQYT5P/Eisenband+01-3335W12%281%29.jpg"
+               alt="Eisenband family search card"
+               style="width:100%; display:block;">
+        </div>
+        <p style="font-size:0.75rem; color: rgba(217,190,128,0.6); margin-top: 8px; line-height: 1.5; font-style: italic;">
+          <span class="en">Family search record — post-war documentation</span>
+          <span class="he">כרטיס חיפוש משפחתי — תיעוד לאחר המלחמה</span>
+        </p>
+      </div>
+
+      <!-- 6: Yad Vashem file -->
+      <div>
+        <div style="border: 1px solid rgba(181,146,62,0.2); padding: 8px; background: rgba(255,255,255,0.02);">
+          <img src="https://images.squarespace-cdn.com/content/v1/5cadef7b51f4d4fb6d1b63fc/1574333876042-M8C6QMHN13Z5U69VDVNH/Eisenband+YVS.jpg"
+               alt="Yad Vashem file"
+               style="width:100%; display:block;">
+        </div>
+        <p style="font-size:0.75rem; color: rgba(217,190,128,0.6); margin-top: 8px; line-height: 1.5; font-style: italic;">
+          <span class="en">Yad Vashem Sources — official family record</span>
+          <span class="he">רשומת יד ושם — תיק רשמי</span>
+        </p>
+      </div>
+
+      <!-- 7: Internment list -->
+      <div style="grid-column: span 3;">
+        <div style="border: 1px solid rgba(181,146,62,0.2); padding: 8px; background: rgba(255,255,255,0.02);">
+          <img src="https://images.squarespace-cdn.com/content/v1/5cadef7b51f4d4fb6d1b63fc/1584529487228-O18UB6RYYPNQVTAMBI7X/Cahier+Cahen+Antiquaille_2.jpg"
+               alt="List of interned children Lyon 1944"
+               style="width:100%; display:block;">
+        </div>
+        <p style="font-size:0.75rem; color: rgba(217,190,128,0.6); margin-top: 8px; line-height: 1.5; font-style: italic;">
+          <span class="en">Official list of interned children, Lyon 1944 — Jacques's name appears here</span>
+          <span class="he">רשימת הילדים הכלואים, ליון 1944 — שמו של ז'אק מופיע ברשימה זו</span>
+        </p>
+      </div>
+
+    </div>
+
+    <p style="font-size: 0.72rem; color: rgba(240,235,224,0.3); margin-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 20px;">
+      <span class="en">All documents courtesy of CDDEJ — Déportés de Lyon et sa région · deportesdelyon.fr</span>
+      <span class="he">כל המסמכים באדיבות CDDEJ — Déportés de Lyon et sa région · deportesdelyon.fr</span>
+    </p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="ft-v">
+    <span class="en">"May God remember the souls of the holy and the pure"</span>
+    <span class="he">"יִזְכּוֹר אֱלֹהִים נִשְׁמַת כָּל קְדוֹשִׁים וּטְהוֹרִים"</span>
+  </div>
+  <div class="ft-n">
+    <span class="en">In memory of Jacques · Marie · Hirsch · Riwka · Yantov · Suzanne</span>
+    <span class="he">לזכר ז'אק · מרי · הירש · ריווקה · יאנטוב · סוזן</span>
+  </div>
+  <div class="ft-m">
+    <span class="en">The Jerusalmy Family · Documented for generations · 2026</span>
+    <span class="he">משפחת ירושלמי · תועד לדורות הבאים · 2026</span>
+  </div>
+</footer>
+
+<script>
+function toggleLang() {
+  const root = document.getElementById('root');
+  const isHe = root.dir === 'rtl';
+  root.dir = isHe ? 'ltr' : 'rtl';
+  root.lang = isHe ? 'en' : 'he';
+  document.title = isHe
+    ? 'In Memory of Jacques Eisenband | The Jerusalmy Family'
+    : 'לזכר ז\'אק אייזנבנד | משפחת ירושלמי';
+}
+</script>
+
+</body>
+</html>
